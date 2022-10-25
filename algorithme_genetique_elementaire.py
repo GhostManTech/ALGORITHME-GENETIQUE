@@ -6,7 +6,7 @@ os.system("cls")
 n = 10 # nombre de gênes considérés par individu
 N = 20 # nombre d'individus dans la population
 prob_mutation = 0.1
-cible = [1 for i in range(n)]
+cible = [1,0,0,0,0,0,0,0,0,1]
 
 def tamisage(tableau, comparaison, taille,indice):
 	parent = indice
@@ -56,8 +56,11 @@ def afficher_population(population):
 		afficher_individu(population[k])
 
 def sante_individu(individu):
-	somme = sum(individu)
-	return abs(sum(cible) - somme)
+	difference = 0 
+	n = len(individu)
+	for k in range(n):
+		difference += abs(individu[k]-cible[k])
+	return difference
 
 def croisement(individu1, individu2):
 	n, m = len(individu1), len(individu2)
